@@ -20,11 +20,14 @@ import type { CountryData } from "../../types.js"
 // contact data of a subscriber/user that is a sole-trader (fyzická
 // osoba podnikateľ) or legal person — i.e. a "publicly-disclosed"
 // business-address carve-out, not a generic role-address rule.
-// §116(16) limits soft opt-in / business-address use to one year
-// after the end of the contractual relationship.
 // §116(5) requires the controller to retain the consent record on a
-// durable medium for at least 4 years from withdrawal.
+// durable medium for at least 4 years (48 months) from withdrawal.
 // Act 18/2018 §15 sets the digital age of consent at 16.
+// 2026-07-01: verified against slov-lex consolidated text of Act
+// 452/2021 §116 — confirmed §116 has 15 subsections (no §116(16));
+// removed prior references to a §116(16) 1-year cap that does not
+// exist in the statute; corrected retention from 60 to 48 months to
+// match §116(5) ("najmenej štyroch rokov od odvolania súhlasu").
 export const SK: CountryData = {
   code: "SK",
   regime: "GDPR+SK-452/2021",
@@ -45,13 +48,15 @@ export const SK: CountryData = {
       conditions: [
         "Act 452/2021 §116(15) exempts direct marketing addressed to PUBLISHED contact data of a subscriber/user who is a sole-trader (fyzická osoba podnikateľ) or legal person from the prior-consent rule",
         "Free, easy opt-out must be offered at collection and in every message (§116(15))",
-        "§116(16): contact data obtained in connection with sale of goods/services may be used under §116(14)–(15) for max 1 year after end of contractual relationship",
         "Named individuals at businesses still require GDPR Art. 6(1)(f) LIA + Art. 13/14 transparency",
       ],
     },
     consentLanguage: { required: ["sk"], mustMatchUserLocale: false },
     dataResidency: { storageRegion: "any", crossBorderTransferMechanism: "scc" },
-    consentRecordRetentionMonths: 60,
+    // §116(5): "trvanlivé médium ... po dobu najmenej štyroch rokov
+    // od odvolania súhlasu" — at least 4 years (48 months) from
+    // withdrawal. Corrected 2026-07-01 from prior 60.
+    consentRecordRetentionMonths: 48,
     sensitiveDataFlags: {
       healthMarketingBlocked: true,
       politicalMarketingBlocked: true,
@@ -72,7 +77,7 @@ export const SK: CountryData = {
       url: "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2021/452/",
       jurisdiction: "SK",
       subRegime: "SK-452/2021",
-      dataLastUpdated: "2026-05-04",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
@@ -90,8 +95,8 @@ export const SK: CountryData = {
       // goods or services may use it for direct marketing of own
       // similar products/services without prior consent, provided the
       // recipient is offered a free, easy opt-out at collection and in
-      // every subsequent message. §116(16) caps such use at 1 year
-      // after the end of the contractual relationship.
+      // every subsequent message. §116 has no post-relationship time
+      // cap — GDPR proportionality still applies.
       softOptInAvailable: true,
       softOptInScope: "similar-products",
       requiresCallerSimilarityAssertion: true,

@@ -3,19 +3,29 @@ import type { CountryData } from "../../types.js"
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
 // Malaysia Personal Data Protection Act 2010 (Act 709) plus the
-// Personal Data Protection (Amendment) Act 2024. Regulator is the
+// Personal Data Protection (Amendment) Act 2024 (Act A1727,
+// gazetted 17 Oct 2024). Amendment provisions were commenced in
+// phases via P.U. (B) 522/2024: sections 7, 11, 13, 14 on
+// 1 Jan 2025; sections 2, 3, 4, 5, 8, 10, 12 on 1 Apr 2025; and
+// sections 6 (DPO/breach notification, new sections 12A/12B) and
+// 9 (new section 43A data portability) on 1 Jun 2025 — so all
+// substantive amendments are now in force. Regulator is the
 // Department of Personal Data Protection (JPDP / PDP Department),
-// jpdp.gov.my. PDPA s. 6 requires consent for processing of personal
-// data; s. 43 gives the data subject a standing right to require a
-// data user to cease (or not begin) processing their personal data
-// for direct marketing at any time. PDPA applies to processing in
-// respect of commercial transactions, which includes B2B contexts.
-// Consent must be capable of being recorded and maintained, but the
-// Act does not mandate double-opt-in — a single affirmative act
-// (ticked box, sign-up confirmation) is sufficient. Penalties under
-// PDPA include criminal fines and imprisonment; 2024 amendments
-// raised maximum penalties and introduced mandatory data breach
-// notification and Data Protection Officer requirements.
+// pdp.gov.my. PDPA s. 6 requires consent for processing of personal
+// data; s. 43 (unchanged by A1727) gives the data subject a standing
+// right to require a data controller (renamed from "data user" by
+// A1727 s. 2) to cease (or not begin) processing their personal
+// data for direct marketing at any time by notice in writing.
+// PDPA applies to processing in respect of commercial transactions,
+// which includes B2B contexts. Consent must be capable of being
+// recorded and maintained, but the Act does not mandate double-
+// opt-in — a single affirmative act (ticked box, sign-up
+// confirmation) is sufficient. Penalties under PDPA include
+// criminal fines and imprisonment; 2024 amendments raised maximum
+// penalties (s. 5 breach: up to RM1m / 3 yrs), introduced mandatory
+// data breach notification (s. 12B, up to RM250k / 2 yrs) and Data
+// Protection Officer requirements (s. 12A), and added biometric
+// data as sensitive personal data (s. 4).
 export const MY: CountryData = {
   code: "MY",
   regime: "PDPA",
@@ -74,7 +84,11 @@ export const MY: CountryData = {
       url: "https://www.agc.gov.my/agcportal/uploads/files/Publications/LOM/EN/Act%20709%2014%206%202016.pdf",
       jurisdiction: "MY",
       subRegime: "MY-PDPA",
-      dataLastUpdated: "2026-05-03",
+      // 2026-07-01: reverified against Act 709 text on lom.agc.gov.my
+      // and A1727 gazette PDF on pdp.gov.my; confirmed all A1727
+      // provisions in force per P.U. (B) 522/2024 (staggered
+      // Jan/Apr/Jun 2025). s. 43 direct-marketing opt-out unchanged.
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: false,
       lawyerAttestation: null,

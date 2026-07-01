@@ -30,7 +30,12 @@ export const JP: CountryData = {
     },
     consentLanguage: { required: ["ja-JP"], mustMatchUserLocale: false },
     dataResidency: { storageRegion: "any", crossBorderTransferMechanism: "adequacy" },
-    consentRecordRetentionMonths: 12,
+    // 施行規則 Art. 4: retention runs until 1 month after the LAST ad
+    // email is sent (floating window, not a fixed period). Static integer
+    // schema cannot express "1 month after last send"; use 1 as the
+    // regulatory floor. Callers should treat this as a minimum and
+    // extend for the duration of active sending.
+    consentRecordRetentionMonths: 1,
     sensitiveDataFlags: {
       healthMarketingBlocked: false,
       politicalMarketingBlocked: false,
@@ -51,7 +56,7 @@ export const JP: CountryData = {
       url: "https://www.japaneselawtranslation.go.jp/en/laws/view/3767/en",
       jurisdiction: "JP",
       subRegime: "JP-ACPT",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

@@ -26,10 +26,16 @@ export const DE: CountryData = {
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
     b2bExemption: {
-      regime: "gdpr-lia",
+      // Verified 2026-07-01 against gesetze-im-internet.de/uwg_2004/__7.html:
+      // §7(2) Nr. 2 requires "vorherige ausdrückliche Einwilligung des
+      // Adressaten" without distinguishing natural vs legal persons.
+      // The "mutmaßliche Einwilligung" softening only applies to phone
+      // (Nr. 1), not to elektronische Post — so B2B email gets no real
+      // carve-out. GDPR LIA does not override UWG lex specialis here.
+      regime: "none",
       conditions: [
-        "legitimate interest assessment required",
-        "UWG §7 case law generally requires consent even for B2B",
+        "UWG §7 Abs. 2 Nr. 2 requires prior express consent regardless of B2B/B2C",
+        "no 'mutmaßliche Einwilligung' softening for electronic mail — only for phone (§7(2) Nr. 1)",
       ],
     },
     // German required at point of collection — UWG §7 case law looks at
@@ -63,7 +69,7 @@ export const DE: CountryData = {
       url: "https://www.gesetze-im-internet.de/uwg_2004/__7.html",
       jurisdiction: "EU",
       subRegime: "DE-UWG",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

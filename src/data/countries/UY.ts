@@ -7,14 +7,16 @@ import type { CountryData } from "../../types.js"
 // (extraterritorial scope, 2018). Regulator: URCDP (Unidad Reguladora
 // y de Control de Datos Personales). EU adequacy decision since 2012.
 //
-// Art. 9 of Ley 18.331 requires informed, free, and EXPRESS consent
-// for processing — for direct marketing this means a single express
-// opt-in (not double). Art. 21 grants data subjects the right to
-// opt out of marketing processing at any time; there is no formal
-// "soft opt-in" carve-out for existing customers under Uruguayan law.
-// The law applies to natural persons only (legal entities not covered
-// → effective B2B leniency for company-to-company contact data, but
-// any natural-person contact data remains in scope).
+// Art. 9 of Ley 18.331 requires "libre, previo, expreso e informado"
+// consent for processing — for direct marketing this means a single
+// express opt-in (not double). Art. 21 grants data subjects the right
+// to request retiro/bloqueo of their data from advertising / commercial
+// prospecting databases at any time; there is no formal "soft opt-in"
+// carve-out for existing customers under Uruguayan law. NOTE: Art. 2
+// of Ley 18.331 extends protection to legal persons ("personas
+// jurídicas") "en cuanto corresponda", so there is no clean natural-
+// person-only carve-out for B2B — B2B contact data is covered when
+// applicable, hence b2bExemption.regime = "none" without any relief.
 export const UY: CountryData = {
   code: "UY",
   regime: "Ley 18.331",
@@ -31,13 +33,14 @@ export const UY: CountryData = {
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
     b2bExemption: {
-      // Ley 18.331 Art. 2 — protects natural persons only.
-      // Legal-entity contact data (generic role addresses) falls outside
-      // the law's scope, but any identifiable natural person remains covered.
+      // Ley 18.331 Art. 2 extends protection to legal persons "en cuanto
+      // corresponda" — so there is NO natural-person-only carve-out and
+      // no B2B relief. All identifiable contact data (natural or legal
+      // person contacts) falls within scope; express consent still required.
       regime: "none",
       conditions: [
-        "Ley 18.331 Art. 2 — applies to natural persons only; legal entities outside scope",
-        "Any identifiable natural-person contact (named employee email) remains fully in scope",
+        "Ley 18.331 Art. 2 — protección se extiende a personas jurídicas en cuanto corresponda; no hay excepción B2B",
+        "Any identifiable contact (named employee email, or business address tied to an identifiable entity) remains in scope",
       ],
     },
     consentLanguage: { required: ["es"], mustMatchUserLocale: true },
@@ -55,9 +58,13 @@ export const UY: CountryData = {
       representativeRequired: false,
     },
     reConsentTriggerMonths: 24,
-    // Ley 18.331 + Código Civil treat under-18 as minors; URCDP guidance
-    // generally recognizes ~13–14 as the threshold for autonomous consent
-    // for everyday digital services, with parental involvement otherwise.
+    // Ley 18.331 has no explicit data-protection consent age. Código de
+    // la Niñez y la Adolescencia (Ley N° 17.823) art. 1 defines "niño"
+    // as ≤13 and "adolescente" as 13–<18; Decreto 64/020 art. 6 flags
+    // menores de edad as a "grupo en situación de especial vulnerabilidad"
+    // for impact assessments but sets no autonomous-consent age. 13 is
+    // used here as the niño/adolescente boundary heuristic; below 13
+    // parental verification applies.
     childAgeOfConsent: 13,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
@@ -66,7 +73,7 @@ export const UY: CountryData = {
       url: "https://www.gub.uy/unidad-reguladora-control-datos-personales",
       jurisdiction: "UY",
       subRegime: "UY-18331",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       // Ley 19.670 Art. 37 extends Ley 18.331 to controllers/processors
       // outside Uruguay when processing targets data subjects in Uruguay

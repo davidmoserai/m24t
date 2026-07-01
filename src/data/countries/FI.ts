@@ -2,16 +2,22 @@ import type { CountryData } from "../../types.js"
 
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
-// Finland: GDPR + Information Society Code (Tietoyhteiskuntakaari 917/2014)
-// §200 — ePrivacy transposition for direct marketing — + Data Protection Act
-// (Tietosuojalaki 1050/2018). Regulator: Tietosuojavaltuutettu (Data
-// Protection Ombudsman, tietosuoja.fi). §200(1): direct marketing by
-// electronic means to natural persons requires PRIOR CONSENT. §200(2):
-// existing-customer soft opt-in for "same product group" with clear opt-out
-// at collection and in every message. §200(3): direct marketing to LEGAL
-// PERSONS is OPT-OUT (permitted unless the recipient has refused), which
-// makes Finland one of the EU MS with a lighter B2B regime. Tietosuojalaki
-// §5 sets the child age of consent for information-society services at 13.
+// Finland: GDPR + Laki sähköisen viestinnän palveluista 917/2014 (Electronic
+// Communications Services Act, formerly "Tietoyhteiskuntakaari") §§200-203
+// — ePrivacy transposition for direct marketing — + Tietosuojalaki 1050/2018.
+// Regulator: Tietosuojavaltuutettu (Data Protection Ombudsman, tietosuoja.fi).
+// §200(1) "Suoramarkkinointi luonnolliselle henkilölle": direct marketing by
+// automated calling systems, fax, email, SMS, voice/sound/picture messages to
+// NATURAL PERSONS requires PRIOR CONSENT ("ennalta suostumuksensa"). §200(2):
+// existing-customer soft opt-in for the seller's own "same product group" or
+// otherwise similar products/services, with clear free opt-out at collection
+// and in every subsequent message. §202 "Suoramarkkinointi yhteisölle":
+// direct marketing to LEGAL PERSONS (yhteisö) is OPT-OUT — permitted unless
+// the recipient has refused, but every message must offer a free, easy
+// opt-out. §203: marketing nature must be clearly and unambiguously
+// recognisable at receipt. Tietosuojalaki §5 sets the child age of consent
+// for information-society services at 13 (Finland took the GDPR Art. 8
+// floor).
 export const FI: CountryData = {
   code: "FI",
   regime: "GDPR",
@@ -28,17 +34,21 @@ export const FI: CountryData = {
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
     b2bExemption: {
-      // ISC §200(3): direct marketing to legal persons is permitted unless
-      // the recipient has separately refused it — opt-out, not opt-in.
-      // Natural persons at a company (named role addresses) still fall
-      // under §200(1) consent. Generic role addresses (info@, sales@) are
-      // treated as legal-person addresses by the Ombudsman.
+      // §202 (Suoramarkkinointi yhteisölle): direct marketing to legal
+      // persons is permitted unless the recipient has separately refused
+      // it — opt-out, not opt-in. Named natural-person addresses at a
+      // company still fall under §200(1) consent unless the person's
+      // position is essentially linked to the goods/services being
+      // marketed (Ombudsman's "position-linked" function-address rule).
+      // Generic role addresses (info@, sales@) are treated as legal-person
+      // addresses. Verified 2026-07-01 vs 917/2014 §§200, 202 and
+      // tietosuoja.fi FAQ.
       regime: "function-address",
       conditions: [
-        "ISC §200(3) — marketing to legal persons is opt-out",
-        "natural-person addresses at a company (firstname.lastname@co.fi) still require §200(1) consent",
+        "§202 — marketing to legal persons (yhteisö) is opt-out; every message must offer free easy opt-out",
+        "named natural-person addresses at a company (firstname.lastname@co.fi) still require §200(1) consent unless the role is essentially linked to the marketed goods/services",
         "every message must offer a free, simple opt-out mechanism",
-        "sender identity and marketing nature must be clearly recognisable (§202)",
+        "sender identity and marketing nature must be clearly recognisable (§203)",
       ],
     },
     consentLanguage: {
@@ -58,24 +68,32 @@ export const FI: CountryData = {
     },
     preferenceCenter: { granularityRequired: "purpose", perEmailUnsubAlsoRequired: true },
     senderIdentity: {
-      // ISC §202: sender must be clearly identifiable; marketing nature
-      // must be recognisable without opening the message.
+      // §203 (Suoramarkkinoinnin tunnistaminen): messages sent under §§200
+      // and 202 must be clearly and unambiguously recognisable as marketing
+      // at receipt; sender must be identifiable. Verified 2026-07-01.
       physicalAddressRequired: true,
       legalEntityNameRequired: true,
       representativeRequired: false,
     },
     reConsentTriggerMonths: 24,
-    // Tietosuojalaki §5: child age of consent for information-society
-    // services lowered to 13 (Finland used the GDPR Art. 8 floor).
+    // Tietosuojalaki 1050/2018 §5 (verified 2026-07-01 vs finlex.fi):
+    // consent-based processing of a child's data for information-society
+    // services offered directly to the child is lawful "jos lapsi on
+    // vähintään 13-vuotias" — Finland used the GDPR Art. 8 floor of 13.
     childAgeOfConsent: 13,
     parentalVerificationRequired: false,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "GDPR (EU 2016/679) + Information Society Code §200 (Tietoyhteiskuntakaari 917/2014, since 2025 part of Sähköisen viestinnän palveluista annettu laki) + Data Protection Act (Tietosuojalaki 1050/2018)",
-      url: "https://tietosuoja.fi/en/electronic-direct-marketing",
+      // Statute names verified against finlex.fi 2026-07-01: primary title is
+      // now "Laki sähköisen viestinnän palveluista" (917/2014); the older
+      // "Tietoyhteiskuntakaari" name is retained parenthetically for
+      // continuity. §§200-203 govern direct marketing; §5 of Tietosuojalaki
+      // sets child consent at 13.
+      statute: "GDPR (EU 2016/679) + Laki sähköisen viestinnän palveluista 917/2014 §§200-203 (formerly Tietoyhteiskuntakaari) + Tietosuojalaki 1050/2018 §5",
+      url: "https://tietosuoja.fi/en/faq-direct-marketing",
       jurisdiction: "FI",
-      subRegime: "FI-ISC",
-      dataLastUpdated: "2026-05-03",
+      subRegime: "FI-SVPL",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
@@ -87,9 +105,11 @@ export const FI: CountryData = {
     transactional: { proofRequired: [] },
   },
   byRelationship: {
-    // ISC §200(2): existing customer soft opt-in for own similar products
-    // /services. Address must have been obtained in the context of a sale,
-    // opt-out must be offered at collection AND in every subsequent message.
+    // §200(2): existing-customer soft opt-in for the seller's own products
+    // in the "same product group or otherwise similar" (samaan tuoteryhmään
+    // kuuluvien tai muuten vastaavien). Address must have been obtained in
+    // the context of a sale, opt-out must be offered at collection AND in
+    // every subsequent message. Verified 2026-07-01.
     "existing-customer": {
       softOptInAvailable: true,
       softOptInScope: "similar-products",
@@ -97,7 +117,7 @@ export const FI: CountryData = {
       optIn: "single",
       suggestedTemplate: "single-opt-in",
     },
-    // ISC §200(3): legal-person recipients — opt-out regime.
+    // §202: legal-person recipients — opt-out regime. Verified 2026-07-01.
     "b2b-cold": {
       optIn: "single",
       checkboxRequired: false,

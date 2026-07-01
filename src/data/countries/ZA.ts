@@ -48,10 +48,11 @@ export const ZA: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording"],
     basis: {
       statute: "Protection of Personal Information Act 4 of 2013 (POPIA) §69 + Regulations Form 4 + Consumer Protection Act 68 of 2008 §11 + Information Regulator Guidance Note on Direct Marketing (Nov 2022)",
-      url: "https://inforegulator.org.za/wp-content/uploads/2020/07/POPIA-GuidanceNote-DirectMarketing-20221103.pdf",
+      // 2026-07-01: verified §69(1)(a) prior consent, §69(2)(b) Form 4, §69(3) existing-customer similar-products opt-out, §69(4) sender identity+opt-out; refreshed stale Guidance Note URL to live path on inforegulator.org.za.
+      url: "https://inforegulator.org.za/wp-content/uploads/2020/07/GUIDANCE-NOTE-ON-DIRECT-MARKETING-IN-TERMS-OF-THE-PROTECTION-OF-PERSONAL-INFORMATION-ACT-4-OF-2013-POPIA.pdf",
       jurisdiction: "ZA",
       subRegime: "ZA-POPIA-69",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

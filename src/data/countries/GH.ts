@@ -63,10 +63,13 @@ export const GH: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording"],
     basis: {
       statute: "Ghana Data Protection Act, 2012 (Act 843), ss. 20, 37, 40",
-      url: "https://www.dataprotection.org.gh/data-protection/data-protection-acts-2012",
+      // 2026-07-01: prior URL (dataprotection.org.gh/data-protection/data-protection-acts-2012) returns 404.
+      // Swapped to the NITA-hosted authoritative PDF of Act 843 (Government of Ghana primary source).
+      // Data Protection Bill 2025 (repeal-and-replace) is in public consultation but NOT enacted; Act 843 remains in force.
+      url: "https://nita.gov.gh/wp-content/uploads/2017/12/Data-Protection-Act-2012-Act-843.pdf",
       jurisdiction: "GH",
       subRegime: "GH-DPA",
-      dataLastUpdated: "2026-05-04",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

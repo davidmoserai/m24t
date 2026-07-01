@@ -3,27 +3,34 @@ import type { CountryData } from "../../types.js"
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
 // Qatar Law No. 13 of 2016 on Personal Data Privacy Protection (PDPPL).
-// Regulator: Compliance and Data Protection Department (CDP) within
-// MCIT / NCDPC (cdp.gov.qa). Art. 4 + 5 establish consent as the basis
-// for processing personal data; Art. 18 governs direct marketing —
-// requires explicit prior consent, sender identification, and a clear
-// opt-out mechanism in every message. Art. 16 covers children's data
-// and requires parental consent. The law applies to natural persons
-// (no formal B2B carve-out). Arabic is the official language of Qatar
-// and is required for legally effective consumer-facing notices.
+// Regulator: National Cyber Security Agency (NCSA) — National Cyber
+// Governance and Assurance Affairs (assurance.ncsa.gov.qa). Art. 4
+// establishes consent as the basis for processing personal data (Art. 5
+// confers withdrawal / objection rights); Art. 22 governs direct
+// marketing — requires explicit prior consent, sender identification,
+// indication that the message is for direct marketing, and a valid
+// address the individual can use to stop the messages or withdraw
+// consent. Art. 16 classifies children's data as special-nature data
+// requiring a processing permit; Art. 17 requires explicit consent
+// from the child's guardian for websites directed at children. The law
+// applies to natural persons (no formal B2B carve-out). Arabic is the
+// official language of Qatar and is required for legally effective
+// consumer-facing notices. Verified 2026-07-01 against the official
+// Arabic text published by NCSA (assurance.ncsa.gov.qa PDF).
 export const QA: CountryData = {
   code: "QA",
   regime: "QA-PDPL",
   defaults: {
     canCollectForMarketing: true,
-    // Art. 4 + 5: consent is the lawful basis. Art. 18: direct marketing
+    // Art. 4: consent is the lawful basis. Art. 22: direct marketing
     // requires express prior consent (single opt-in is the statutory floor).
     optIn: "express",
     checkboxRequired: true,
     bundlingAllowed: false,
     prechecking: "forbidden",
     channels: ["email"],
-    // Art. 18 mandates an effective opt-out mechanism in every message.
+    // Art. 22 mandates an effective opt-out mechanism (a valid contact
+    // address the individual can use to stop messages) in every message.
     unsubscribeMechanism: "one-click",
     // PDPPL provides no soft opt-in / existing-customer exemption.
     softOptInAvailable: false,
@@ -44,32 +51,44 @@ export const QA: CountryData = {
     dataResidency: { storageRegion: "any", crossBorderTransferMechanism: "explicit-consent" },
     consentRecordRetentionMonths: 60,
     sensitiveDataFlags: {
-      // Art. 16 — children's personal data requires parental consent.
+      // Art. 16 classifies children's data (and health, religious beliefs,
+      // etc.) as special-nature personal data requiring a permit; Art. 17
+      // requires explicit guardian consent for websites directed at
+      // children. Political marketing is treated cautiously by convention
+      // (no explicit statutory bar in Law 13/2016, but Art. 16 permits
+      // the Minister to add further sensitive categories by decision).
       healthMarketingBlocked: true,
       politicalMarketingBlocked: true,
       childrenBlocked: true,
     },
     preferenceCenter: { granularityRequired: "purpose", perEmailUnsubAlsoRequired: true },
     senderIdentity: {
-      // Art. 18 — sender must be clearly identified in every direct
-      // marketing message, with a working opt-out.
+      // Art. 22 — the electronic communication must include the sender's
+      // identity, indicate that it is sent for direct marketing purposes,
+      // and carry a valid contact address for opt-out / consent withdrawal.
       physicalAddressRequired: true,
       legalEntityNameRequired: true,
       representativeRequired: false,
     },
     reConsentTriggerMonths: 24,
-    // Art. 16 — processing children's data requires parental consent.
-    // PDPPL does not set a statutory digital-consent age; default to 18
-    // (age of majority in Qatar) for marketing purposes.
+    // Art. 17 — websites directed at children must obtain explicit
+    // guardian consent. PDPPL does not set a numeric digital-consent
+    // age; default to 18 (Qatar's general age of majority) for
+    // marketing purposes.
     childAgeOfConsent: 18,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Qatar Law No. 13 of 2016 on Personal Data Privacy Protection (PDPPL), Arts. 4, 5, 16, 18",
-      url: "https://www.almeezan.qa/LawView.aspx?opt&LawID=7050&language=en",
+      // Direct marketing = Art. 22 (chapter six of the law: "electronic
+      // communications for direct marketing purposes"). Art. 18 in this
+      // law is the exemption clause (national security etc.), NOT direct
+      // marketing — this citation was corrected on 2026-07-01 against
+      // the official Arabic NCSA PDF.
+      statute: "Qatar Law No. 13 of 2016 on Personal Data Privacy Protection (PDPPL), Arts. 4, 5, 16, 17, 22",
+      url: "https://www.almeezan.qa/LawView.aspx?opt=&LawID=7121&language=ar",
       jurisdiction: "QA",
       subRegime: "QA-PDPL",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: false,
       lawyerAttestation: null,
@@ -81,7 +100,7 @@ export const QA: CountryData = {
     transactional: { proofRequired: [] },
   },
   byRelationship: {
-    // PDPPL provides no soft opt-in for existing customers — Art. 18
+    // PDPPL provides no soft opt-in for existing customers — Art. 22
     // requires explicit prior consent regardless of prior relationship.
   },
 }

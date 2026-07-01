@@ -46,12 +46,21 @@ export const PL: CountryData = {
     childAgeOfConsent: 16,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
+    // 2026-07-01: corrected basis citations. UŚUDE art. 10 was
+    // REPEALED on 10 Nov 2024 by the PKE implementing act — its
+    // content was consolidated into PKE art. 398, which now also
+    // extends to legal persons (previously UŚUDE art. 10 covered
+    // only natural persons). Polish DPA 2018 art. 4 does NOT set
+    // the child age of consent (it addresses public-task
+    // information-duty exemptions); Poland did not derogate below
+    // GDPR art. 8's default of 16, so the authority is GDPR art. 8
+    // directly.
     basis: {
-      statute: "GDPR Art. 6(1)(a) + Art. 7 + Prawo komunikacji elektronicznej (PKE) 2024 Art. 398 + Polish Data Protection Act 2018 Art. 4",
+      statute: "GDPR Art. 6(1)(a) + Art. 7 + Art. 8 + Prawo komunikacji elektronicznej (PKE, ustawa z 12 lipca 2024 r., Dz.U. 2024 poz. 1221) Art. 398",
       url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20240001221",
       jurisdiction: "EU",
       subRegime: "PL-PKE-2024",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

@@ -74,10 +74,14 @@ export const LU: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
       statute: "Règlement (UE) 2016/679 (RGPD) + Loi du 30 mai 2005 concernant la protection de la vie privée dans le secteur des communications électroniques, Art. 11 + Loi du 1er août 2018 portant organisation de la CNPD",
-      url: "https://cnpd.public.lu/fr/professionnels/obligations/prospection.html",
+      // 2026-07-01: previous URL (…/obligations/prospection.html) now 404s;
+      // switched to the CNPD ePrivacy dossier which hosts the current
+      // guidance on Art. 11 of the 30 May 2005 law (opt-in + soft opt-in
+      // for existing customers + similar products/services carve-out).
+      url: "https://cnpd.public.lu/fr/dossiers-thematiques/eprivacy/dispositions-comm-electr.html",
       jurisdiction: "LU",
       subRegime: "LU-EPRIVACY",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

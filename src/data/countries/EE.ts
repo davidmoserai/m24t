@@ -62,10 +62,16 @@ export const EE: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
       statute: "Elektroonilise side seadus (ESS) §103¹ + Isikuandmete kaitse seadus (IKS) §8 + Regulation (EU) 2016/679 (GDPR)",
-      url: "https://www.riigiteataja.ee/akt/122052018003",
+      // Current in-force consolidated redaction of ESS (terviktekst,
+      // effective 28.06.2025). Confirmed 2026-07-01 to load
+      // Elektroonilise side seadus and contain §103/§103¹ direct-marketing
+      // provisions cross-referenced by AKI guidance
+      // "Elektrooniliste kontaktandmete kasutamine otseturustuses"
+      // (aki.ee, updated 20.02.2015).
+      url: "https://www.riigiteataja.ee/akt/117042024005",
       jurisdiction: "EE",
       subRegime: "EE-ESS",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

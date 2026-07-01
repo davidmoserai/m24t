@@ -3,11 +3,11 @@ import type { CountryData } from "../../types.js"
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
 // LGPD (Lei nº 13.709/2018) + Marco Civil + CDC + ANPD Resoluções
-// (esp. Res. CD/ANPD nº 4/2023 dosimetria + Res. nº 15/2024
-// international transfers). Controller bears burden of proving
-// consent (Art. 8 §2). LGPD Art. 14 §1: children under 12
-// ("criança") require specific, prominent parental consent;
-// 12-17 ("adolescente") follow best-interest analysis.
+// (esp. Res. CD/ANPD nº 4/2023 dosimetria + Res. CD/ANPD nº 19/2024
+// international transfers / SCCs, publ. 26 Aug 2024). Controller bears
+// burden of proving consent (Art. 8 §2). LGPD Art. 14 §1: children under
+// 12 ("criança" per ECA Lei 8.069/90 Art. 2) require specific, prominent
+// parental consent; 12-17 ("adolescente") follow best-interest analysis.
 export const BR: CountryData = {
   code: "BR",
   regime: "LGPD",
@@ -53,11 +53,15 @@ export const BR: CountryData = {
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Lei nº 13.709/2018 (LGPD) Arts. 7-8, 10, 14, 23, 33, 52 + ANPD Resolução CD/ANPD nº 4/2023 (dosimetria) + Resolução nº 15/2024 (international transfers / SCCs)",
+      // 2026-07-01: corrected international-transfer resolution number
+      // from "15/2024" to "19/2024" (Resolução CD/ANPD nº 19, de 23 de
+      // agosto de 2024, publ. DOU 26/08/2024) — verified against ANPD
+      // atos-normativos registry.
+      statute: "Lei nº 13.709/2018 (LGPD) Arts. 7-8, 10, 14, 23, 33, 52 + ANPD Resolução CD/ANPD nº 4/2023 (dosimetria) + Resolução CD/ANPD nº 19/2024 (international transfers / SCCs)",
       url: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
       jurisdiction: "BR",
       subRegime: "LGPD",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "low",
       extraterritorialReach: true,
       lawyerAttestation: null,

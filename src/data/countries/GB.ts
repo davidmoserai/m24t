@@ -63,13 +63,17 @@ export const GB: CountryData = {
     childAgeOfConsent: 13,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
+    // Child age 13 sits in UK GDPR Art. 8(1) as modified by the DPA 2018
+    // — DPA 2018 §9 was OMITTED on 31.12.2020 by the DP/PEC (Amendments
+    // etc) (EU Exit) Regulations 2019, so the "§9 (age 13)" citation
+    // was stale. §208 is Scotland-only capacity, not the age hook.
     basis: {
       statute:
-        "UK GDPR + PECR (Privacy and Electronic Communications Regulations 2003) Reg. 22 + Data (Use and Access) Act 2025 (Royal Assent 19 June 2025) + Data Protection Act 2018 §9 (age 13)",
-      url: "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/consent/",
+        "UK GDPR Art. 8(1) (as modified, age 13) + PECR (Privacy and Electronic Communications Regulations 2003) Reg. 22 (incl. Reg. 22(3A) charity soft opt-in) + Data (Use and Access) Act 2025 §114 (Royal Assent 19 June 2025; s.114 in force 5 Feb 2026 via SI 2026/82) + Data Protection Act 2018",
+      url: "https://www.legislation.gov.uk/uksi/2003/2426/regulation/22",
       jurisdiction: "UK",
       subRegime: "PECR",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,

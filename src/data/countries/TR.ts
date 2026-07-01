@@ -42,12 +42,19 @@ export const TR: CountryData = {
     },
     consentLanguage: { required: ["tr"], mustMatchUserLocale: true },
     dataResidency: {
-      // KVKK Art. 9: cross-border transfer requires explicit consent
-      // OR adequacy decision by KVKK Board OR written undertaking
-      // approved by the Board / binding corporate rules. Practical
-      // default for marketing data is in-country storage.
+      // KVKK Art. 9 (as amended by Law 7499, published 12 March 2024
+      // in Resmî Gazete No. 32487, in force 1 June 2024): new tiered
+      // GDPR-aligned regime. Primary routes: (1) Board adequacy
+      // decision (yeterlilik kararı); (2) appropriate safeguards —
+      // Board-published standard contracts (standart sözleşme),
+      // binding corporate rules, int'l agreements, or Board-approved
+      // written undertakings; (3) exceptional/one-off (arızi) cases
+      // including informed explicit consent as risk-disclosed. For
+      // ongoing marketing data flows the practical route is the
+      // Board's standart sözleşme — closest enum is "scc". See
+      // https://www.kvkk.gov.tr/Icerik/2053/Yurtdisina-Aktarim
       storageRegion: "local",
-      crossBorderTransferMechanism: "explicit-consent",
+      crossBorderTransferMechanism: "scc",
     },
     consentRecordRetentionMonths: 36,
     sensitiveDataFlags: {
@@ -77,7 +84,14 @@ export const TR: CountryData = {
       url: "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=6698&MevzuatTur=1&MevzuatTertip=5",
       jurisdiction: "TR",
       subRegime: "TR-IYS",
-      dataLastUpdated: "2026-05-03",
+      // 2026-07-01: re-verified against mevzuat.gov.tr (Law 6563 Art. 6
+      // tacir/esnaf carve-out), kvkk.gov.tr (Art. 9 post-Law-7499 tiered
+      // transfer regime effective 2024-06-01), and iys.org.tr (mandatory
+      // IYS registration for all senders including foreign senders to TR
+      // recipients). Cross-border mechanism updated from "explicit-consent"
+      // to "scc" to reflect Board standart sözleşme as the primary
+      // ongoing-transfer route under amended Art. 9.
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
