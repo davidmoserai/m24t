@@ -63,9 +63,15 @@ export const HK: CountryData = {
       ],
     },
     consentLanguage: {
-      // PDPO s.35C(2)(b): notice must be "easily understandable and, if
-      // in writing, easily readable".
-      required: ["easily understandable", "easily readable"],
+      // PDPO s.35C(4): notice must be "easily understandable and, if
+      // in writing, easily readable" (PCPD Guidance on Direct
+      // Marketing, Apr 2023 update, ¶3.5).
+      // UEMO: OFCA Industry Guide (rev. Jan 2017) ¶31: "As a matter of
+      // principle, sender information and the unsubscribe facility
+      // statement should be given in both Chinese and English, unless
+      // the recipient ... has indicated ... in one language only."
+      // Verified 2026-07-01 via ofca.gov.hk uemo_industry_guide_e.pdf.
+      required: ["easily understandable", "easily readable", "Chinese and English"],
       mustMatchUserLocale: false,
     },
     dataResidency: {
@@ -113,7 +119,9 @@ export const HK: CountryData = {
       url: "https://www.elegislation.gov.hk/hk/cap486!en?xpid=ID_1438403547997_001",
       jurisdiction: "HK",
       subRegime: "HK-PDPO-VIA",
-      dataLastUpdated: "2026-05-04",
+      // 2026-07-01: added Chinese+English language requirement to
+      // consentLanguage.required per OFCA UEMO Industry Guide ¶31.
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: false,
       lawyerAttestation: null,
