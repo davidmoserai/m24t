@@ -47,11 +47,20 @@ export const SG: CountryData = {
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "source", "wording"],
     basis: {
-      statute: "Personal Data Protection Act 2012 (Act No. 26 of 2012) + Spam Control Act 2007 (Cap. 311A) + Do Not Call Registry (PDPA Part IX)",
-      url: "https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/advisoryguidelinesonrequiringconsentformarketing8may2015.pdf",
+      // Verified 2026-07-01 against SSO 2020 Revised Edition (in force 31 Dec 2021,
+      // current as of 1 Jul 2026). PDPA §§14 (Provision of consent), 15 (Deemed
+      // consent), 15A (Deemed consent by notification — inserted by Act 40/2020,
+      // in force 1 Feb 2021). Legitimate interests exception is in First Schedule
+      // Part 3 (not §15A). Do Not Call Registry is Part 9 (renumbered from Part
+      // IX in 2020 RevEd); §37 defines "specified message". Spam Control Act 2007
+      // §11 requires bulk UCE senders to comply with Second Schedule (unsubscribe
+      // facility, sender identification, header labelling). "Cap. 311A" citation
+      // dropped — the 2020 RevEd no longer uses Chapter numbers.
+      statute: "Personal Data Protection Act 2012 (Act 26 of 2012, 2020 Revised Edition; §§14, 15, 15A) + Spam Control Act 2007 (Act 21 of 2007, 2020 Revised Edition; §11, Second Schedule) + Do Not Call Registry (PDPA Part 9, §37)",
+      url: "https://sso.agc.gov.sg/Act/PDPA2012",
       jurisdiction: "SG",
       subRegime: "PDPA-DNC",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
