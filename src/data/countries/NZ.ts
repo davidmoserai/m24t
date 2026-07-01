@@ -2,12 +2,16 @@ import type { CountryData } from "../../types.js"
 
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
-// Unsolicited Electronic Messages Act 2007 (UEMA) + Privacy Act 2020.
-// UEMA s.4 "consented to receiving" = express consent OR consent that
-// can reasonably be inferred (incl. conspicuously published business
-// addresses where message is relevant to role and no "no marketing"
-// notice accompanies the publication) — most permissive B2B regime in
-// this set. Unsubscribe takes effect 5 working days after use (s.9(2)).
+// Unsolicited Electronic Messages Act 2007 (UEMA) + Privacy Act 2020
+// (as amended by Privacy Amendment Act 2025, Royal Assent 23 Sept 2025;
+// IPP 3A indirect-collection notification commences 1 May 2026).
+// UEMA s.4 "consent" defers to Schedule 2, which lists three forms:
+// express, inferred (from conduct / existing relationship), and deemed
+// (conspicuously published business address, message relevant to role,
+// no "no marketing" notice accompanying publication) — most permissive
+// B2B regime in this set. Sender identification: s.10. Functional
+// unsubscribe: s.11; unsubscribe request takes effect 5 working days
+// after use per s.11(2).
 export const NZ: CountryData = {
   code: "NZ",
   regime: "UEMA",
@@ -26,7 +30,11 @@ export const NZ: CountryData = {
     b2bExemption: {
       regime: "publicly-disclosed",
       conditions: [
-        "UEMA s.4 inferred consent: address conspicuously published in business/official capacity, message relevant to role, publication not accompanied by no-marketing notice",
+        // Deemed consent per UEMA Schedule 2 cl.4 (via s.4 defn): address
+        // conspicuously published in business/official capacity, message
+        // relevant to role/functions/duties, publication not accompanied
+        // by a no-marketing notice.
+        "UEMA Schedule 2 deemed consent: address conspicuously published in business/official capacity, message relevant to role/functions/duties, publication not accompanied by no-marketing notice",
       ],
     },
     consentLanguage: { required: [], mustMatchUserLocale: false },
@@ -48,11 +56,14 @@ export const NZ: CountryData = {
     parentalVerificationRequired: false,
     proofRequired: ["timestamp", "source", "wording"],
     basis: {
-      statute: "Unsolicited Electronic Messages Act 2007 (No. 7 of 2007) + Privacy Act 2020 (No. 31 of 2020)",
+      // Privacy Amendment Act 2025 (No 53) received Royal Assent
+      // 23 Sept 2025; IPP 3A (indirect-collection notification)
+      // commences 1 May 2026.
+      statute: "Unsolicited Electronic Messages Act 2007 (No. 7 of 2007) + Privacy Act 2020 (No. 31 of 2020, as amended by Privacy Amendment Act 2025 No. 53)",
       url: "https://www.legislation.govt.nz/act/public/2007/0007/latest/whole.html",
       jurisdiction: "NZ",
       subRegime: "UEMA",
-      dataLastUpdated: "2026-05-04",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
