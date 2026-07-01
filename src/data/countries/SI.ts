@@ -16,9 +16,11 @@ import type { CountryData } from "../../types.js"
 // a free, easy refusal option at the time of collection and in every
 // message.
 //
-// ZVOP-2 Art. 7 sets the child age of consent for information society
+// ZVOP-2 Art. 8 sets the child age of consent for information society
 // services at 15 (Slovenia exercised the GDPR Art. 8 derogation
-// downward from 16).
+// downward from 16). Verified 2026-07-01 against Uradni list RS
+// št. 163/2022 — Art. 8 (privolitev otroka za uporabo storitev
+// informacijske družbe): "je veljavna, če je otrok star 15 let ali več".
 export const SI: CountryData = {
   code: "SI",
   regime: "GDPR",
@@ -35,14 +37,26 @@ export const SI: CountryData = {
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
     b2bExemption: {
-      // ZEKom-2 Art. 226 applies the consent rule to "subscribers",
-      // and Slovenian transposition does not limit this to natural
-      // persons — IP RS guidance treats legal persons as protected
-      // too. No general B2B carve-out.
-      regime: "none",
+      // CORRECTION 2026-07-01: verified against Uradni list RS
+      // št. 130/2022 (ZEKom-2 gazette text). Art. 226(4) reads
+      // "Prvi in tretji odstavek tega člena se uporabljata za
+      // naročnike, ki so fizične osebe." — paragraphs 1 (consent)
+      // and 3 (other electronic direct marketing) apply ONLY to
+      // subscribers who are natural persons. Art. 226(6) further
+      // permits use of a natural person's email address where the
+      // legal person has publicly published it as its contact
+      // address ("javno objavi kot svoj kontaktni elektronski
+      // naslov"). Together this maps to `publicly-disclosed`:
+      // legal-person addressees fall outside the consent gate, and
+      // publicly listed business contact addresses are usable.
+      // GDPR still applies to any personal data of natural persons
+      // behind role addresses (info@, sales@).
+      regime: "publicly-disclosed",
       conditions: [
-        "ZEKom-2 Art. 226 consent requirement covers natural and legal persons",
-        "Generic role addresses (info@, sales@) still need a lawful basis under GDPR; IP RS treats them cautiously",
+        "ZEKom-2 Art. 226(4) limits paragraphs 1 and 3 (consent requirement) to subscribers who are natural persons",
+        "ZEKom-2 Art. 226(6) permits use of a natural person's email address where a legal person has publicly published it as its contact address",
+        "GDPR still governs any personal data of natural persons behind role addresses (info@, sales@); IP RS treats these cautiously",
+        "Soft opt-in under Art. 226(2) still requires similar-products limitation and free/easy refusal offered at collection and in every message",
       ],
     },
     consentLanguage: { required: ["sl"], mustMatchUserLocale: true },
@@ -60,16 +74,17 @@ export const SI: CountryData = {
       representativeRequired: true,
     },
     reConsentTriggerMonths: 24,
-    // ZVOP-2 Art. 7 — Slovenia set the GDPR Art. 8 child age at 15.
+    // ZVOP-2 Art. 8 — Slovenia set the GDPR Art. 8 child age at 15.
+    // (Corrected 2026-07-01: earlier citation to Art. 7 was wrong.)
     childAgeOfConsent: 15,
     parentalVerificationRequired: false,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Zakon o elektronskih komunikacijah (ZEKom-2) Art. 226 + Zakon o varstvu osebnih podatkov (ZVOP-2) + Regulation (EU) 2016/679 (GDPR)",
+      statute: "Zakon o elektronskih komunikacijah (ZEKom-2) Art. 226 + Zakon o varstvu osebnih podatkov (ZVOP-2) Art. 8 + Regulation (EU) 2016/679 (GDPR)",
       url: "https://www.ip-rs.si/varstvo-osebnih-podatkov/pravice-posameznika/neposredno-trzenje",
       jurisdiction: "SI",
       subRegime: "SI-ZEKom",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
