@@ -47,12 +47,17 @@ export const IN: CountryData = {
     childAgeOfConsent: 18,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
+    // 2026-07-01: verified against DPDP Act 2023 (indiacode, as on 19-Nov-2025)
+    // §6(1) consent formula, §5(3)/§6(3) English + 8th Schedule language notice,
+    // §9(1) verifiable parental consent, §2(f) child = under 18. Rules 2025
+    // notified 13-Nov-2025 (G.S.R. 843(E)); 18-month phased commencement for
+    // §§3–17 → full effect ~13-May-2027. Substantive text unchanged.
     basis: {
-      statute: "Digital Personal Data Protection Act 2023 (Act 22 of 2023) + DPDP Rules 2025 (notified Nov 2025)",
-      url: "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251117695301.pdf",
+      statute: "Digital Personal Data Protection Act 2023 (Act 22 of 2023) + DPDP Rules 2025 (G.S.R. 843(E), 13 Nov 2025)",
+      url: "https://www.indiacode.nic.in/bitstream/123456789/22037/1/a2023-22.pdf",
       jurisdiction: "IN",
       subRegime: "DPDP",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
