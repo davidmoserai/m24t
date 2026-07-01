@@ -30,15 +30,19 @@ export const CY: CountryData = {
     softOptInScope: "none",
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
-    // Law 112(I)/2004 Art. 106 applies to "subscribers" — the Commissioner
-    // has interpreted this as covering both natural and legal persons,
-    // so B2B email to a legal person address still needs consent (or
-    // the soft opt-in). Generic role addresses get no special carve-out.
-    // https://www.dataprotection.gov.cy/dataprotection/dataprotection.nsf/page17_en/page17_en?opendocument
+    // Verified 2026-07-01 against cylaw.org primary text: Law 112(I)/2004
+    // Art. 106(5) states "Τα εδάφια (1) και (3) ισχύουν για τους συνδρομητές
+    // που είναι φυσικά πρόσωπα" — subsections (1) and (3) apply only to
+    // natural-person subscribers; legal-person subscribers are protected
+    // via the 2005 Order on Legal Persons (Autoclitic Communications).
+    // Practically, function-address B2B mail to a legal person's mailbox
+    // is not caught by the Art. 106(1) prior-consent rule.
+    // http://www.cylaw.org/nomoi/enop/non-ind/2004_1_112/full.html
     b2bExemption: {
-      regime: "none",
+      regime: "function-address",
       conditions: [
-        "Law 112(I)/2004 Art. 106 applies to subscribers including legal persons; no general B2B exemption",
+        "Law 112(I)/2004 Art. 106(5): subsections (1) and (3) apply only to natural-person subscribers",
+        "Legal-person subscribers covered by 2005 Order on Legal Persons (Autoclitic Communications)",
       ],
     },
     // Greek is the working language of the Commissioner; consent text
@@ -59,9 +63,10 @@ export const CY: CountryData = {
       representativeRequired: true,
     },
     reConsentTriggerMonths: 24,
-    // Law 125(I)/2018 Art. 7: child age of consent for information society
-    // services set to 14 (Cyprus exercised the GDPR Art. 8 derogation
-    // downward from 16).
+    // Verified 2026-07-01: Law 125(I)/2018 Art. 8(1) (not Art. 7) —
+    // "εάν το παιδί είναι τουλάχιστον δεκατεσσάρων (14) ετών". Child
+    // age of consent for information society services is 14 (Cyprus
+    // exercised the GDPR Art. 8 derogation downward from 16).
     // http://www.cylaw.org/nomoi/enop/non-ind/2018_1_125/full.html
     childAgeOfConsent: 14,
     parentalVerificationRequired: true,
@@ -71,7 +76,7 @@ export const CY: CountryData = {
       url: "https://www.dataprotection.gov.cy/dataprotection/dataprotection.nsf/index_en/index_en?opendocument",
       jurisdiction: "CY",
       subRegime: "CY-EPRIVACY",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
