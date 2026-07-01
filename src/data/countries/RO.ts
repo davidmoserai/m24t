@@ -67,12 +67,17 @@ export const RO: CountryData = {
     childAgeOfConsent: 16,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
+    // 2026-07-01: Corrected citation. Legea 190/2018 art. 8 covers
+    // archiving/scientific-research derogations, NOT children's consent.
+    // Romania's Law 190/2018 art. 1 does not list GDPR Art. 8 among the
+    // provisions it implements nationally, so Romania has NOT legislated a
+    // lower age and the GDPR Art. 8(1) baseline of 16 applies directly.
     basis: {
-      statute: "Regulation (EU) 2016/679 (GDPR), Art. 8 (children's consent — Romania did not lower from default 16) + Legea nr. 506/2004 privind prelucrarea datelor cu caracter personal și protecția vieții private în sectorul comunicațiilor electronice, art. 12 (consimțământ prealabil expres; alin. (4) extinde regula la abonați persoane juridice) + Legea nr. 190/2018 privind măsuri de punere în aplicare a Regulamentului (UE) 2016/679",
+      statute: "Regulation (EU) 2016/679 (GDPR), Art. 8(1) (children's consent — Romania did NOT legislate a lower age under Legea nr. 190/2018, so the default of 16 applies) + Legea nr. 506/2004 privind prelucrarea datelor cu caracter personal și protecția vieții private în sectorul comunicațiilor electronice, art. 12 (consimțământ prealabil expres; alin. (2) soft opt-in pentru produse/servicii similare oferite clienților existenți; alin. (4) extinde alin. (1) și (3) la abonați persoane juridice) + Legea nr. 190/2018 privind măsuri de punere în aplicare a Regulamentului (UE) 2016/679 (nu conține derogare de la art. 8 GDPR)",
       url: "https://www.dataprotection.ro/?page=Legea_nr_506_2004",
       jurisdiction: "RO",
       subRegime: "RO-506/2004",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-07-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
