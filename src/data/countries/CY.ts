@@ -59,9 +59,10 @@ export const CY: CountryData = {
       representativeRequired: true,
     },
     reConsentTriggerMonths: 24,
-    // Law 125(I)/2018 Art. 7: child age of consent for information society
-    // services set to 14 (Cyprus exercised the GDPR Art. 8 derogation
-    // downward from 16).
+    // Law 125(I)/2018 Art. 8(1): child age of consent for information
+    // society services set to 14 (Cyprus exercised the GDPR Art. 8
+    // derogation downward from 16). Verified 2026-09-01 against cylaw.org
+    // primary text: "εάν το παιδί είναι τουλάχιστον δεκατεσσάρων (14) ετών".
     // http://www.cylaw.org/nomoi/enop/non-ind/2018_1_125/full.html
     childAgeOfConsent: 14,
     parentalVerificationRequired: true,
@@ -71,7 +72,7 @@ export const CY: CountryData = {
       url: "https://www.dataprotection.gov.cy/dataprotection/dataprotection.nsf/index_en/index_en?opendocument",
       jurisdiction: "CY",
       subRegime: "CY-EPRIVACY",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
