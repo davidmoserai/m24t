@@ -49,7 +49,8 @@ export const AE: CountryData = {
       representativeRequired: true,
     },
     reConsentTriggerMonths: null,
-    childAgeOfConsent: 18,
+    // childAgeOfConsent: 13 per Federal Decree-Law 26/2025 + Federal Decree-Law 45/2021, as cited on the UAE government portal — https://u.ae/ar/information-and-services/social-affairs/children/Childrens-digital-safety ("يُمنع ... جمع أو استخدام البيانات الشخصية للأطفال دون سن 13 عاماً إلا بعد")
+    childAgeOfConsent: 13,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording"],
     basis: {
@@ -57,7 +58,7 @@ export const AE: CountryData = {
       url: "https://uaelegislation.gov.ae/en/legislations/1972/download",
       jurisdiction: "AE",
       subRegime: "AE-PDPL",
-      dataLastUpdated: "2026-05-04",
+      dataLastUpdated: "2026-09-01",
       confidence: "low",
       extraterritorialReach: true,
       lawyerAttestation: null,
