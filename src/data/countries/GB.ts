@@ -64,12 +64,16 @@ export const GB: CountryData = {
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
+      // DPA 2018 §9 was omitted at Brexit (31.12.2020) by SI 2019/419.
+      // The age-13 threshold for ISS consent is now set directly in UK
+      // GDPR Article 8(1) as retained/amended. Charity soft opt-in
+      // (PECR Reg 22(3A)) commenced 5 Feb 2026 by SI 2026/82 reg 2(y).
       statute:
-        "UK GDPR + PECR (Privacy and Electronic Communications Regulations 2003) Reg. 22 + Data (Use and Access) Act 2025 (Royal Assent 19 June 2025) + Data Protection Act 2018 §9 (age 13)",
+        "UK GDPR (Art. 8 age 13) + PECR (Privacy and Electronic Communications Regulations 2003) Reg. 22 (incl. Reg 22(3A) charity soft opt-in) + Data (Use and Access) Act 2025 s.114 (Royal Assent 19 June 2025; commenced 5 Feb 2026 via SI 2026/82) + Data Protection Act 2018 (framework)",
       url: "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/consent/",
       jurisdiction: "UK",
       subRegime: "PECR",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
