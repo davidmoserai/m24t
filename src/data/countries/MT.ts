@@ -6,14 +6,15 @@ import type { CountryData } from "../../types.js"
 // (Electronic Communications Sector) Regulations, S.L. 586.01
 // (transposing ePrivacy Directive 2002/58/EC) + Data Protection Act
 // (Cap. 586). Regulator: Information and Data Protection Commissioner
-// (IDPC). S.L. 586.01 reg. 9 requires PRIOR EXPRESS consent for
-// unsolicited electronic mail for direct marketing (opt-in). Soft
-// opt-in carve-out at reg. 9(2) for own similar products/services from
+// (IDPC). S.L. 586.01 reg. 9(1) requires PRIOR CONSENT IN WRITING for
+// unsolicited electronic mail for direct marketing (opt-in) and, in
+// the same sub-regulation, extends that prohibition to a subscriber
+// or user "irrespective of whether such subscriber or user is a
+// natural person or legal person" — so no B2B exemption. Soft opt-in
+// carve-out at reg. 9(2) for own similar products/services from
 // existing customers, with clear opt-out at collection and in every
-// message. No B2B exemption — opt-in applies to legal persons too,
-// per S.L. 586.01 reg. 9(3) (Malta extended ePrivacy protections to
-// legal persons). Child digital-services age set to 13 by Cap. 586
-// art. 4 (Malta opted for the GDPR Art. 8 floor).
+// message. Child digital-services age set to 13 by S.L. 586.11 reg. 4
+// (issued under Cap. 586; Malta opted for the GDPR Art. 8 floor).
 export const MT: CountryData = {
   code: "MT",
   regime: "GDPR+ePrivacy",
@@ -30,13 +31,14 @@ export const MT: CountryData = {
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
     b2bExemption: {
-      // S.L. 586.01 reg. 9(3) extends opt-in protection to legal
-      // persons (subscribers that are not natural persons). Malta
-      // is one of the EU MS that did NOT carve out B2B from ePrivacy
-      // direct-marketing rules.
+      // S.L. 586.01 reg. 9(1) extends opt-in protection to legal
+      // persons (subscribers that are not natural persons) —
+      // "irrespective of whether such subscriber or user is a natural
+      // person or legal person". Malta is one of the EU MS that did
+      // NOT carve out B2B from ePrivacy direct-marketing rules.
       regime: "none",
       conditions: [
-        "S.L. 586.01 reg. 9(3) extends prior-consent rule to legal persons",
+        "S.L. 586.01 reg. 9(1) extends prior-consent-in-writing rule to legal persons",
         "GDPR LIA still possible for B2B role addresses but ePrivacy consent layer applies to email channel",
       ],
     },
@@ -60,18 +62,20 @@ export const MT: CountryData = {
       representativeRequired: true,
     },
     reConsentTriggerMonths: 24,
-    // Cap. 586 art. 4 — Malta set the digital-services consent age at 13
-    // (the GDPR Art. 8 floor; Malta did not raise it).
+    // S.L. 586.11 reg. 4 (issued under Cap. 586) — "The processing of
+    // personal data of a child in relation to information society
+    // services shall be lawful where the child is thirteen years of
+    // age." Malta opted for the GDPR Art. 8 floor and did not raise it.
     childAgeOfConsent: 13,
     parentalVerificationRequired: false,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
       statute:
-        "GDPR (Reg. (EU) 2016/679) + Processing of Personal Data (Electronic Communications Sector) Regulations, S.L. 586.01 reg. 9 + Data Protection Act (Cap. 586)",
+        "GDPR (Reg. (EU) 2016/679) + Processing of Personal Data (Electronic Communications Sector) Regulations, S.L. 586.01 reg. 9 + Data Protection Act (Cap. 586) + Processing of Child's Personal Data in Relation to the Offer of Information Society Services Regulations, S.L. 586.11 reg. 4",
       url: "https://legislation.mt/eli/sl/586.01/eng",
       jurisdiction: "MT",
       subRegime: "MT-EPRIVACY",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
