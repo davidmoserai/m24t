@@ -5,17 +5,23 @@ import type { CountryData } from "../../types.js"
 // Iceland is an EEA member: GDPR applies via the EEA Joint Committee
 // Decision and is implemented domestically by Act No. 90/2018 on Data
 // Protection and the Processing of Personal Data. Electronic direct
-// marketing (ePrivacy) is governed by the Electronic Communications Act
-// No. 81/2003, Art. 46 — which requires PRIOR EXPRESS CONSENT for
-// unsolicited electronic marketing to natural persons, with a soft
-// opt-in carve-out for similar products to existing customers (mirrors
-// ePrivacy Directive 2002/58/EC Art. 13). Regulator: Persónuvernd
-// (Icelandic Data Protection Authority).
+// marketing (ePrivacy) is governed by the Telecommunications Act
+// No. 70/2022 (Lög um fjarskipti), Art. 94 (Óumbeðin fjarskipti) —
+// which replaced the earlier Electronic Communications Act No. 81/2003
+// Art. 46. Art. 94 mgr. 1 requires PRIOR EXPRESS CONSENT ("upplýst
+// samþykki … fyrir fram") for use of automated calling systems, fax,
+// email and any electronic messages for direct marketing. Mgr. 2 is a
+// soft opt-in carve-out: an email address collected in the course of a
+// sale may be used for direct marketing of the seller's own products
+// or services if the recipient was given a free opt-out at collection
+// and in every subsequent message (mirrors ePrivacy Directive 2002/58/EC
+// Art. 13). Regulator: Persónuvernd (Icelandic Data Protection Authority).
 //
-// b2bExemption: Act 81/2003 Art. 46 expressly applies to natural persons;
-// electronic marketing to legal persons (companies) is permitted unless
-// they have opted out. Generic role addresses (info@, sales@) are not
-// linked to an identifiable natural person and are treated more lightly.
+// b2bExemption: Art. 94 mgr. 4 expressly permits use of general email
+// addresses of companies and institutions (almenn tölvupóstföng
+// fyrirtækja og stofnana) for direct marketing of goods and services,
+// notwithstanding mgr. 1–3. Identifiable natural-person business
+// addresses remain within mgr. 1 and require consent.
 //
 // childAgeOfConsent: Act No. 90/2018 Art. 10 sets the age of consent for
 // information society services at 13 (Iceland used the GDPR Art. 8(1)
@@ -38,8 +44,8 @@ export const IS: CountryData = {
     b2bExemption: {
       regime: "function-address",
       conditions: [
-        "Act No. 81/2003 Art. 46 applies to natural persons; legal persons may be marketed to until they opt out",
-        "Generic role addresses (info@, sales@) of legal persons treated lighter; identifiable natural-person business addresses still require consent",
+        "Act No. 70/2022 Art. 94 mgr. 4 permits use of general email addresses of companies and institutions (almenn tölvupóstföng fyrirtækja og stofnana) for direct marketing, notwithstanding mgr. 1–3",
+        "Identifiable natural-person business addresses fall under mgr. 1 and require prior express consent (or the mgr. 2 existing-customer own-products carve-out)",
       ],
     },
     consentLanguage: { required: [], mustMatchUserLocale: true },
@@ -61,11 +67,11 @@ export const IS: CountryData = {
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Act No. 90/2018 on Data Protection and the Processing of Personal Data (implementing GDPR/EU 2016/679 via EEA) + Electronic Communications Act No. 81/2003 Art. 46 (ePrivacy)",
-      url: "https://www.personuvernd.is/information-in-english/",
+      statute: "Act No. 90/2018 on Data Protection and the Processing of Personal Data (implementing GDPR/EU 2016/679 via EEA) + Telecommunications Act No. 70/2022 (Lög um fjarskipti) Art. 94 (Óumbeðin fjarskipti) — replaces former Act No. 81/2003 Art. 46",
+      url: "https://www.althingi.is/lagas/nuna/2022070.html",
       jurisdiction: "IS",
       subRegime: "IS-EPRIVACY",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
