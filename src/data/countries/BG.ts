@@ -24,12 +24,12 @@ export const BG: CountryData = {
   regime: "GDPR+ePrivacy",
   defaults: {
     canCollectForMarketing: true,
-    // ZET чл. 6 ал. 4 (verbatim, fetched 2026-05-03):
-    // "Забранява се изпращането на непоискани търговски съобщения на
-    //  потребители без предварителното им съгласие."
+    // ZET чл. 6 ал. 4 (verbatim from mi.government.bg ZET PDF, fetched
+    // 2026-09-01): "Забранява се изпращането на непоискани търговски
+    // съобщения на потребители без предварителното им съгласие."
     // (Sending unsolicited commercial messages to consumers without
-    //  their prior consent is prohibited.)
-    // https://exlege.bg/normi/zet
+    //  their prior consent is prohibited.) Reinforced by ZES чл. 261
+    // ал. 1 for direct-marketing calls/SMS/email specifically.
     optIn: "express",
     checkboxRequired: true,
     // GDPR Art. 7(2) + EDPB guidance — consent must be unbundled.
@@ -103,23 +103,27 @@ export const BG: CountryData = {
       representativeRequired: false,
     },
     reConsentTriggerMonths: 24,
-    // ZZLD чл. 25в (verbatim, fetched 2026-05-03):
+    // ZZLD чл. 25в (verbatim from aref.government.bg consolidated PDF,
+    // fetched 2026-09-01):
     // "Обработването на данни на субект на данни - лице, ненавършило
     //  14 години, въз основа на съгласие по смисъла на чл. 4, т. 11
-    //  от Регламент (ЕС) 2016/679 ... е законосъобразно само ако
-    //  съгласието е дадено от упражняващия родителски права родител
-    //  или от настойника на субекта на данните."
-    // → Bulgaria's GDPR Art. 8 digital age of consent = 14.
-    // https://exlege.bg/normi/zzld
+    //  от Регламент (ЕС) 2016/679, включително в случаите на пряко
+    //  предлагане на услуги на информационното общество по смисъла
+    //  на чл. 1, ал. 3 от Закона за електронната търговия, е
+    //  законосъобразно само ако съгласието е дадено от упражняващия
+    //  родителски права родител или от настойника на субекта на
+    //  данните."
+    // → Bulgaria's GDPR Art. 8 digital age of consent = 14 (lower than
+    //   GDPR default of 16). Added by ДВ бр. 17 / 2019.
     childAgeOfConsent: 14,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Regulation (EU) 2016/679 (GDPR) + Directive 2002/58/EC (ePrivacy) + Bulgarian Electronic Commerce Act (ZET) Art. 6 + Personal Data Protection Act (ZZLD)",
+      statute: "Regulation (EU) 2016/679 (GDPR) + Directive 2002/58/EC (ePrivacy) + Bulgarian Electronic Commerce Act (ZET) Art. 6 + Electronic Communications Act (ZES) Art. 261 + Personal Data Protection Act (ZZLD) Art. 25в",
       url: "https://www.cpdp.bg/en/",
       jurisdiction: "BG",
-      subRegime: "BG-ZET",
-      dataLastUpdated: "2026-05-03",
+      subRegime: "BG-ZET-ZES",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
@@ -131,10 +135,17 @@ export const BG: CountryData = {
     transactional: { proofRequired: [] },
   },
   byRelationship: {
-    // Bulgaria did NOT transpose ePrivacy Art. 13(2) soft opt-in into
-    // ZET. ZET чл. 6 ал. 4 requires prior consent for any unsolicited
-    // commercial email to consumers, with no statutory carve-out for
-    // existing customers / similar own products. Relationship therefore
-    // does not unlock soft opt-in. (Verified against exlege.bg 2026-05-03.)
+    // Corrected 2026-09-01: Bulgaria DID transpose ePrivacy Art. 13(2)
+    // via ZES чл. 261 ал. 2. Existing-customer relationship (data
+    // collected during a commercial transaction) unlocks the "own
+    // similar products/services" soft opt-in — no need for a fresh
+    // express consent, but opt-out must have been offered at
+    // collection and must be available in every subsequent message
+    // (ZES чл. 261 ал. 2 т. 1-2 + ал. 5 т. 2 on unsubscribe address).
+    "existing-customer": {
+      optIn: "single",
+      checkboxRequired: false,
+      suggestedTemplate: "single-opt-in",
+    },
   },
 }
