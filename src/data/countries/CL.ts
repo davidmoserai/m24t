@@ -3,20 +3,27 @@ import type { CountryData } from "../../types.js"
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
 // Chile — Ley N° 19.628 sobre Protección de la Vida Privada (1999, as amended).
-// Current law (in force on 2026-05-03) is opt-out based for direct marketing:
+// Current law (in force on 2026-09-01) is opt-out based for direct marketing:
 // Art. 4 allows processing of personal data from publicly available sources or
-// with consent; Art. 3 bis (added by Ley 19.812) requires that direct marketing
-// communications offer the data subject a free mechanism to request removal /
-// blocking from the database. There is no statutory double-opt-in requirement.
+// with consent — including data "necesarios para comunicaciones comerciales de
+// respuesta directa o comercialización o venta directa de bienes o servicios".
+// Art. 3 bis (added by Ley 19.812) requires that direct marketing communications
+// offer the data subject a free mechanism to request removal / blocking from the
+// database. Ley 19.496 Art. 28 B (SERNAC) additionally requires every
+// promotional email to state the subject, identify the sender, and carry a valid
+// address for suspension requests. There is no statutory double-opt-in
+// requirement, and no EU-style "similar products" soft opt-in test.
 //
-// TRANSITION: Ley N° 21.719 (signed 13 Dec 2024, published in Diario Oficial)
-// overhauls the regime to a GDPR-style model with express, specific, informed
-// consent, creates the Agencia de Protección de Datos Personales, and introduces
-// administrative fines. Per its transitory articles, the bulk of substantive
-// obligations enter into force 24 months after publication (≈ Dec 2026), with
-// the Agencia ramping up earlier. As of 2026-05-03, Ley 19.628 still governs;
-// senders preparing for 21.719 should already migrate to express opt-in,
-// granular consent, and full proof logs. Sources: bcn.cl / leychile.cl.
+// TRANSITION: Ley N° 21.719 (promulgated 25 Nov 2024, published in Diario Oficial
+// 13 Dec 2024) overhauls the regime to a GDPR-style model with express, specific,
+// informed consent (art. 12), creates the Agencia de Protección de Datos
+// Personales, and introduces administrative fines. Per artículo primero
+// transitorio the substantive amendments to Ley 19.628 enter into force on
+// 1 December 2026 ("el día primero del mes vigésimo cuarto posterior a la
+// publicación"). As of 2026-09-01, Ley 19.628 still governs — three months of
+// vacatio legis remain. Senders preparing for 21.719 should already migrate to
+// express opt-in, granular consent, and full proof logs.
+// Sources: BCN Informe 12-25 (bcn.cl); SERNAC art. 28 B (sernac.cl).
 export const CL: CountryData = {
   code: "CL",
   regime: "LEY-19628",
@@ -32,11 +39,15 @@ export const CL: CountryData = {
     channels: ["email"],
     // Free, accessible removal mechanism mandated by Art. 3 bis.
     unsubscribeMechanism: "one-click",
-    // No statutory soft opt-in concept; Ley 19.628 is opt-out for everyone.
-    // Ley 21.719 will tighten this — existing-customer marketing will need
-    // either express consent or a documented legitimate-interest assessment.
+    // Chilean regime has no EU-style "similar-products" soft opt-in. Ley 19.628
+    // Art. 4 permits processing "necesarios para comunicaciones comerciales de
+    // respuesta directa o comercialización o venta directa de bienes o servicios"
+    // when data comes from publicly available sources — a broader carve-out
+    // than the EU's similarity test. Scope tagged "any" for that reason.
+    // Ley 21.719 (in force 1 Dec 2026) will require express consent and end
+    // this carve-out; senders should migrate ahead of that date.
     softOptInAvailable: true,
-    softOptInScope: "similar-products",
+    softOptInScope: "any",
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
     b2bExemption: {
@@ -81,7 +92,7 @@ export const CL: CountryData = {
       url: "https://www.bcn.cl/leychile/navegar?idNorma=141599",
       jurisdiction: "CL",
       subRegime: "CL-19628",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: false,
       lawyerAttestation: null,
@@ -95,8 +106,11 @@ export const CL: CountryData = {
   byRelationship: {
     "existing-customer": {
       softOptInAvailable: true,
-      softOptInScope: "similar-products",
-      requiresCallerSimilarityAssertion: true,
+      // Ley 19.628 Art. 4 exception is source-based (publicly available data)
+      // and product-scope-agnostic — no similarity assertion is required by
+      // Chilean statute for existing-customer marketing.
+      softOptInScope: "any",
+      requiresCallerSimilarityAssertion: false,
     },
   },
 }
