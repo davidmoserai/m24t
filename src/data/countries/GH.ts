@@ -63,10 +63,10 @@ export const GH: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording"],
     basis: {
       statute: "Ghana Data Protection Act, 2012 (Act 843), ss. 20, 37, 40",
-      url: "https://www.dataprotection.org.gh/data-protection/data-protection-acts-2012",
+      url: "https://dataprotection.org.gh/wp-content/uploads/2025/05/data-protection-act-2012-act-843.pdf",
       jurisdiction: "GH",
       subRegime: "GH-DPA",
-      dataLastUpdated: "2026-05-04",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
