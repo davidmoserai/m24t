@@ -100,13 +100,20 @@ export const CA: CountryData = {
     // ("manifest, free, enlightened, specific").
     "CA-QC": {
       consentLanguage: { required: ["fr-CA"], mustMatchUserLocale: true },
+      // Quebec Act respecting the protection of personal information in
+      // the private sector (P-39.1), §4.1 (added by Law 25 / SQ 2021 c.25
+      // s.104): personal information of a minor under 14 may not be
+      // collected without the consent of a parent/tutor. Federal PIPEDA
+      // has no statutory age; OPC guidance treats 13 as the default —
+      // Quebec's higher threshold overrides in-province.
+      childAgeOfConsent: 14,
       basis: {
         statute:
           "CASL + PIPEDA + Quebec Law 25 (Act respecting the protection of personal information in the private sector) + Bill 96 (Charter of the French Language)",
-        url: "https://www.cai.gouv.qc.ca/",
+        url: "https://www.legisquebec.gouv.qc.ca/en/document/cs/P-39.1",
         jurisdiction: "CA",
         subRegime: "QC-Law-25",
-        dataLastUpdated: "2026-05-03",
+        dataLastUpdated: "2026-09-01",
         confidence: "medium",
         extraterritorialReach: true,
         lawyerAttestation: null,
