@@ -2,51 +2,70 @@ import type { CountryData } from "../../types.js"
 
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
-// Egypt — Personal Data Protection Law No. 151 of 2020 (PDPL).
-// Regulator: Personal Data Protection Center (PDPC) under MCIT.
-// Executive Regulations issued 1 November 2025 by Ministerial
-// Decree 816 of 2025 (وزير الاتصالات وتكنولوجيا المعلومات);
-// PDPC is now operational. The regulations introduce a LICENSING
-// requirement for direct electronic marketing activity from the
-// PDPC, in addition to the data subject's express prior consent.
-// Quoted clause (Decree 816/2025 reporting): "اشترطت اللائحة
-// الحصول على ترخيص من المركز لمزاولة نشاط التسويق الإلكتروني،
-// وأوجبت الحصول على موافقة صريحة مسبقة من الشخص المعني بالبيانات
-// قبل توجيه الرسائل التسويقية إليه".
+// Egypt — Personal Data Protection Law No. 151 of 2020 (PDPL),
+// as published in the Official Gazette (الجريدة الرسمية) العدد 28
+// مكرر (هـ) في 15 يولية سنة 2020. Regulator: Personal Data
+// Protection Center — مركز حماية البيانات الشخصية (established
+// by Art. 19, Chapter 9), attached to MCIT.
 //
-// Key provisions for direct electronic marketing:
-//   Art. 12 — Processing personal data requires explicit consent
-//             of the data subject (express, single opt-in).
-//   Art. 11 — Electronic marketing communications: must be sent only
-//             with the data subject's express prior consent, must
-//             clearly identify the sender, must disclose the marketing
-//             purpose, and must provide a free, simple opt-out
-//             mechanism in every message.
-//   Art. 3  — Defines "child" and protected categories; combined with
-//   Art. 17 — Children's personal data requires parental/guardian
-//             consent. PDPL treats persons under 18 as children.
-//   Art. 14 — Cross-border transfers of personal data require a
-//             licence/permit from the PDPC and an adequate level
-//             of protection in the recipient jurisdiction.
+// Executive Regulations: reported issued by Ministerial Decree
+// 816 of 2025 (وزير الاتصالات وتكنولوجيا المعلومات) on 1 Nov
+// 2025; primary-source verification against mcit.gov.eg / the
+// Official Gazette was not obtainable at last review, so the
+// specific text of the executive regulations is treated as
+// UNVERIFIED here — only the statute (Law 151/2020) is relied on
+// below.
 //
-// PDPL covers natural persons; there is no carve-out for B2B
-// (employee/role) addresses — corporate inboxes tied to identifiable
-// individuals are in scope. No formal soft opt-in (existing-customer
-// similar-products) regime is provided in the statute.
-// Consent and disclosures must be intelligible to the data subject;
-// Arabic is the official language of Egypt and is required for
-// consent wording directed at Egyptian residents.
+// Key statutory provisions for direct electronic marketing
+// (all article numbers verified against the Official Gazette
+// scan of Law 151/2020):
+//   Art. 6  — Lawful bases for electronic processing (consent
+//             for a specified purpose is the first-listed basis).
+//   Art. 12 — Sensitive personal data: collection/processing
+//             requires a licence from the PDPC and, save for
+//             legally authorised cases, WRITTEN AND EXPLICIT
+//             consent ("موافقة كتابية وصريحة"). Same article
+//             requires PARENTAL consent for any operation
+//             involving children's data ("وفى حالة إجراء أى
+//             عملية... تتعلق ببيانات الأطفال، يلزم موافقة
+//             ولى الأمر").
+//   Art. 14 — Cross-border transfers of personal data prohibited
+//             unless recipient jurisdiction offers protection no
+//             lower than the PDPL, AND a licence/permit is
+//             issued by the PDPC ("وبترخيص أو تصريح من المركز").
+//   Art. 17 — DIRECT ELECTRONIC MARKETING (Chapter 8 - التسويق
+//             الإلكتروني المباشر): "يحظر إجراء أى اتصال
+//             إلكترونى بغرض التسويق المباشر للشخص المعنى
+//             بالبيانات، إلا بتوافر الشروط الآتية" — (1) consent
+//             of the data subject, (2) sender identity in every
+//             message, (3) valid postal/contact address of
+//             sender, (4) clear indication the message is for
+//             direct-marketing purposes, (5) clear/simple
+//             mechanism to refuse or withdraw consent.
+//   Art. 18 — Marketing-sender obligations: specified marketing
+//             purpose, non-disclosure of contact data, AND
+//             "الاحتفاظ بسجلات إلكترونية مثبت بها موافقة
+//             الشخص المعنى بالبيانات ... وذلك لمدة ثلاث سنوات
+//             من تاريخ آخر إرسال" — RETAIN CONSENT RECORDS
+//             FOR 3 YEARS (36 MONTHS) FROM LAST SEND.
 //
-// Source: Law 151/2020 as published in the Official Gazette,
-//         republished by MCIT (mcit.gov.eg); Executive
-//         Regulations issued by Ministerial Decree 816 of 2025
-//         (effective 1 November 2025).
+// PDPL scope is natural persons — there is no statutory B2B
+// carve-out for employee/role addresses tied to identifiable
+// individuals. The statute does not provide a soft-opt-in
+// (existing-customer / similar-products) regime.
+// Arabic is the official language of Egypt; consent wording
+// directed at Egyptian residents must be intelligible in Arabic.
+//
+// Source: Law 151/2020, Official Gazette العدد 28 مكرر (هـ),
+//         15 July 2020, published by MCIT (mcit.gov.eg PDF).
 export const EG: CountryData = {
   code: "EG",
   regime: "PDPL",
   defaults: {
     canCollectForMarketing: true,
-    // Art. 11 + Art. 12 — express prior consent required.
+    // Art. 17 — consent required for any electronic direct
+    // marketing communication; Art. 12 requires written+explicit
+    // consent for sensitive data. Prechecking is not permissible.
     optIn: "express",
     checkboxRequired: true,
     bundlingAllowed: false,
@@ -66,32 +85,40 @@ export const EG: CountryData = {
     },
     // Arabic required for consent wording directed at EG residents.
     consentLanguage: { required: ["ar"], mustMatchUserLocale: true },
-    // Art. 14 — cross-border transfer requires PDPC licence.
+    // Art. 14 — cross-border transfer requires PDPC licence AND
+    // recipient country adequate; Art. 15 allows explicit-consent
+    // exception in listed cases (medical, legal, etc.).
     dataResidency: { storageRegion: "any", crossBorderTransferMechanism: "explicit-consent" },
-    consentRecordRetentionMonths: 60,
+    // Art. 18(3) — "لمدة ثلاث سنوات من تاريخ آخر إرسال"
+    // (retain consent records for 3 years from last send) = 36 months.
+    consentRecordRetentionMonths: 36,
     sensitiveDataFlags: {
       healthMarketingBlocked: true,
       politicalMarketingBlocked: true,
       childrenBlocked: true,
     },
     preferenceCenter: { granularityRequired: "purpose", perEmailUnsubAlsoRequired: true },
-    // Art. 11 — sender must be clearly identified and provide opt-out.
+    // Art. 17(2)-(3) — every marketing message must carry the
+    // originator/sender identity AND a valid contact address.
     senderIdentity: {
       physicalAddressRequired: true,
       legalEntityNameRequired: true,
       representativeRequired: true,
     },
     reConsentTriggerMonths: 24,
-    // Art. 3 / Art. 17 — children (under 18) require parental consent.
+    // Art. 12 — operations involving children's data require
+    // parental consent ("موافقة ولى الأمر"). PDPL does not fix
+    // an explicit age of majority for consent; general Egyptian
+    // civil-law majority (18) is used here.
     childAgeOfConsent: 18,
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Egypt Personal Data Protection Law No. 151 of 2020 (PDPL), Arts. 11, 12, 14, 17; Executive Regulations issued by Ministerial Decree 816 of 2025 (effective 1 Nov 2025)",
-      url: "https://mcit.gov.eg/en/Legislations",
+      statute: "Egypt Personal Data Protection Law No. 151 of 2020 (PDPL), Arts. 6, 12, 14, 17, 18 (Official Gazette العدد 28 مكرر (هـ), 15 July 2020)",
+      url: "https://mcit.gov.eg/Upcont/Documents/Reports%20and%20Documents_1232021000_Law_No_151_2020_Personal_Data_Protection.pdf",
       jurisdiction: "EG",
       subRegime: "EG-PDPL",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
