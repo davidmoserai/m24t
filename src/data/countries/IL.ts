@@ -48,10 +48,13 @@ export const IL: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording"],
     basis: {
       statute: "Communications Law (Bezeq and Broadcasts) 5742-1982, §30A + Protection of Privacy Law 5741-1981 + Amendment 13 to PPL (effective 14 Aug 2025)",
-      url: "https://www.gov.il/en/pages/17052018_7",
+      // PPA professional guide to PPL Amendment 13 (in force 14 Aug 2025).
+      // Prior URL /en/pages/17052018_7 was a 2018 archive page not
+      // specific to Amendment 13; swapped to the PPA's Hebrew guide.
+      url: "https://www.gov.il/he/pages/guide_tikon13_professional",
       jurisdiction: "IL",
       subRegime: "IL-COMM-30A",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
