@@ -7,13 +7,17 @@ import type { CountryData } from "../../types.js"
 // Limitations of Business Communication (Grtv.) + Act CXII of 2011 on
 // the Right of Informational Self-Determination and Freedom of
 // Information (Infotv.). Direct marketing email requires express prior
-// consent under Grtv. §6(1)–(2). NAIH is the supervisory authority and
-// has issued repeated decisions confirming opt-in is mandatory and
-// pre-checked boxes are invalid (NAIH/2024/* lines). Grtv. §6(3)
-// requires every commercial communication to clearly identify the
-// sender and be unambiguously recognisable as advertising. Infotv. §6
-// fixes the digital age of consent at 16 (Hungary did not lower it from
-// the GDPR default).
+// consent under Grtv. §6(1) ("előzetesen egyértelműen és kifejezetten
+// hozzájárult"). NAIH is the supervisory authority and has issued
+// repeated decisions confirming opt-in is mandatory and pre-checked
+// boxes are invalid. Grtv. §6(4) is a narrow postal-mail carve-out
+// (addressed advertising mail may be sent without prior consent with
+// opt-out); it does NOT apply to email or equivalent electronic means.
+// Sender identification for information-society-service providers is
+// governed by Ekertv. §4 (name/seat/contact) and Ekertv. §14/A(1) (real
+// sender must be disclosed in electronic advertising sent by email).
+// Hungary kept the GDPR Article 8 default digital age of consent at 16
+// (no lowering rule was issued under Infotv.).
 export const HU: CountryData = {
   code: "HU",
   regime: "GDPR",
@@ -30,15 +34,17 @@ export const HU: CountryData = {
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
     b2bExemption: {
-      // Grtv. §6(4): direct marketing to a natural person — including a
-      // sole trader or named employee at a business address — requires
-      // the same prior consent as to any consumer. Generic role
-      // addresses (info@, sales@) at a registered legal entity fall
-      // outside Grtv.'s "natural person" scope and are commonly handled
-      // under GDPR legitimate interest with a clear opt-out.
+      // Grtv. §6(1): direct marketing to a natural person — including a
+      // sole trader or named employee at a business address — via email
+      // or equivalent electronic means requires prior express consent
+      // ("előzetesen egyértelműen és kifejezetten hozzájárult"). Generic
+      // role addresses (info@, sales@) at a registered legal entity
+      // fall outside Grtv.'s "természetes személy" scope and are
+      // commonly handled under GDPR legitimate interest with a clear
+      // opt-out.
       regime: "function-address",
       conditions: [
-        "Grtv. §6(4): named natural persons (incl. sole traders, employees) require prior express consent regardless of business context",
+        "Grtv. §6(1): named natural persons (incl. sole traders, employees) require prior express consent for email/electronic direct marketing regardless of business context",
         "Generic role addresses at legal entities may rely on GDPR Art. 6(1)(f) legitimate interest with documented LIA and clear opt-out",
       ],
     },
@@ -52,25 +58,28 @@ export const HU: CountryData = {
     },
     preferenceCenter: { granularityRequired: "purpose", perEmailUnsubAlsoRequired: true },
     senderIdentity: {
-      // Grtv. §6(3) + Ekertv. §4: every commercial communication must
-      // unambiguously identify the natural or legal person on whose
-      // behalf it is sent and be clearly recognisable as advertising.
+      // Ekertv. §4 requires the information-society-service provider to
+      // publish name, seat/address and contact details. Ekertv. §14/A(1)
+      // additionally requires that electronic advertising sent by email
+      // (or equivalent means) disclose the real sender's identity and
+      // be clearly recognisable as advertising.
       physicalAddressRequired: true,
       legalEntityNameRequired: true,
       representativeRequired: false,
     },
     reConsentTriggerMonths: 24,
-    // Infotv. §6(3) — Hungary kept the GDPR default age of 16 for
-    // information-society services; no lowering decree was issued.
+    // Hungary did not enact a lowering rule under Infotv., so the GDPR
+    // Article 8 default digital age of consent (16) applies for
+    // information-society services offered to minors.
     childAgeOfConsent: 16,
     parentalVerificationRequired: false,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Act CVIII of 2001 (Ekertv.) + Act XLVIII of 2008 (Grtv.) §6 + Act CXII of 2011 (Infotv.) §6 + Regulation (EU) 2016/679 (GDPR)",
+      statute: "Act CVIII of 2001 (Ekertv.) §§4, 14, 14/A + Act XLVIII of 2008 (Grtv.) §6(1) + Act CXII of 2011 (Infotv.) + Regulation (EU) 2016/679 (GDPR)",
       url: "https://njt.hu/jogszabaly/2008-48-00-00",
       jurisdiction: "HU",
       subRegime: "HU-GRTV",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
