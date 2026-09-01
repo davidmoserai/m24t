@@ -8,8 +8,9 @@ import type { CountryData } from "../../types.js"
 // údajů (ÚOOÚ). 480/2004 §7 requires prior express consent for commercial
 // communications, with a narrow soft opt-in for existing customers
 // (similar products/services + clear opt-out at collection and in every
-// message). 480/2004 §6 requires clear sender identification and a valid
-// return/unsubscribe address. Czech ePrivacy regime applies to BOTH
+// message). 480/2004 §7(4) prohibits sending commercial email that is
+// not clearly marked as such, that hides sender identity, or that lacks
+// a valid opt-out reply address. Czech ePrivacy regime applies to BOTH
 // natural persons AND legal persons (entrepreneurs/sole traders) — there
 // is no general B2B exemption; addresses of legal entities are still
 // covered when the recipient is identifiable. Child age of consent under
@@ -60,11 +61,11 @@ export const CZ: CountryData = {
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Regulation (EU) 2016/679 (GDPR) + Act No. 480/2004 Coll. on Certain Information Society Services §7 (prior consent for commercial communications) and §6 (sender identification) + Act No. 110/2019 Coll. on Personal Data Processing §7 (child age of consent: 15)",
+      statute: "Regulation (EU) 2016/679 (GDPR) + Act No. 480/2004 Coll. on Certain Information Society Services §7(2) (prior consent for commercial communications), §7(3) (soft opt-in for existing customers / own similar products with clear opt-out at collection and in every message), §7(4) (marking as commercial, sender identity, valid opt-out reply address) + Act No. 110/2019 Coll. on Personal Data Processing §7 (child age of consent: 15)",
       url: "https://www.zakonyprolidi.cz/cs/2004-480",
       jurisdiction: "CZ",
       subRegime: "CZ-480",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
