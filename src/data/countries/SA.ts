@@ -3,25 +3,38 @@ import type { CountryData } from "../../types.js"
 // INFORMATIONAL ONLY — NOT LEGAL ADVICE. See LICENSE and DISCLAIMER.md.
 //
 // Saudi Arabia Personal Data Protection Law (PDPL), Royal Decree M/19
-// of 2021, fully effective Sept 2024, plus Implementing Regulations
-// (2023) issued by SDAIA (Saudi Data and AI Authority).
-// - Art. 5 + 6: lawful basis defaults to explicit consent (express,
-//   single purpose); no general legitimate-interest gateway for
-//   marketing.
-// - Art. 25: direct marketing to a data subject requires the data
-//   subject's CONSENT, sender identity must be disclosed, and an
-//   opt-out / withdrawal mechanism must be provided. No soft opt-in
-//   for existing customers.
-// - Art. 29 + Implementing Regs: cross-border transfers permitted
-//   subject to SDAIA criteria (adequacy / safeguards / necessity).
-// - PDPL covers natural persons; legal-person business contacts are
-//   outside scope.
+// of 9/2/1443H, amended by Royal Decree M/148 of 5/9/1444H (Mar 2023);
+// entered into force 14 Sept 2023 with a 1-year grace period ending
+// 14 Sept 2024. Executive Regulations issued 2023 by SDAIA (Saudi
+// Data and AI Authority).
+// - PDPL Art. 5 + 6 + Exec Reg Art. 11: processing requires consent
+//   ("لا تجوز معالجة البيانات الشخصية...إلا بعد موافقة صاحبها");
+//   consent must be free-will, purpose-specific, separate per purpose,
+//   verifiable, and from a person of full legal capacity ("من كامل
+//   الأهلية"). Explicit consent required for sensitive data, credit
+//   data, and automated-decision processing.
+// - PDPL Art. 25 + Exec Reg Art. 28/29: sending promotional /
+//   awareness / marketing materials requires the targeted recipient's
+//   CONSENT, clear sender identity in every message, and an opt-out
+//   mechanism at least as easy as the opt-in. Exec Reg Art. 28(1)
+//   frames consent as required "in the case where there is no prior
+//   dealing between the controller and the targeted recipient" —
+//   maintainer treats this conservatively (no soft opt-in) because
+//   Art. 29 imposes consent on direct marketing generally.
+// - PDPL Art. 29 + Exec Reg: cross-border transfers permitted only
+//   with adequate protection abroad assessed by SDAIA and limited to
+//   the minimum data necessary.
+// - PDPL covers personal data of natural persons; legal-person /
+//   function business contacts (info@company.sa) are outside scope.
 // - Arabic is the official language; consent wording must be
 //   intelligible to the data subject — Arabic required where the
 //   subject is an Arabic speaker / Saudi resident.
-// - PDPL does not define a child age of consent; in the Saudi legal
-//   context the age of majority is 18, and parental/guardian consent
-//   is required for minors.
+// - PDPL / Exec Reg do not fix a numeric child age of consent; Art. 5
+//   and Exec Reg Art. 13 require guardian ("الولي الشرعي") consent
+//   for a subject who is "ناقص أو عديم الأهلية" (incomplete /
+//   lacking legal capacity). Saudi civil-law majority is 18.
+// Verified 2026-09-01 against SDAIA primary text (PersonalData.pdf,
+// ExecutiveRegulations.pdf).
 export const SA: CountryData = {
   code: "SA",
   regime: "PDPL",
@@ -66,11 +79,11 @@ export const SA: CountryData = {
     parentalVerificationRequired: true,
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
-      statute: "Personal Data Protection Law (PDPL), Royal Decree M/19 of 9/2/1443H (2021), fully effective 14 Sept 2024, with Implementing Regulations issued by SDAIA (2023)",
+      statute: "Personal Data Protection Law (PDPL), Royal Decree M/19 of 9/2/1443H, as amended by Royal Decree M/148 of 5/9/1444H; in force from 14 Sept 2023, enforcement from 14 Sept 2024 after 1-year grace period. Executive Regulations issued by SDAIA (2023).",
       url: "https://sdaia.gov.sa/en/SDAIA/about/Pages/PersonalDataProtection.aspx",
       jurisdiction: "SA",
       subRegime: "SA-PDPL",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
