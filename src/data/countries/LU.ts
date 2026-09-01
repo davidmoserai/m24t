@@ -74,10 +74,15 @@ export const LU: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
       statute: "Règlement (UE) 2016/679 (RGPD) + Loi du 30 mai 2005 concernant la protection de la vie privée dans le secteur des communications électroniques, Art. 11 + Loi du 1er août 2018 portant organisation de la CNPD",
-      url: "https://cnpd.public.lu/fr/professionnels/obligations/prospection.html",
+      // Prior CNPD URL /fr/professionnels/obligations/prospection.html now
+      // 404s; swapped for the Legilux ELI of the actual statute
+      // (n4 = "Loi du 30 mai 2005 concernant la protection de la vie privée
+      // dans le secteur des communications électroniques"), Art. 11
+      // "Communications non sollicitées" verified on the consolidated text.
+      url: "https://legilux.public.lu/eli/etat/leg/loi/2005/05/30/n4/consolide",
       jurisdiction: "LU",
       subRegime: "LU-EPRIVACY",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
