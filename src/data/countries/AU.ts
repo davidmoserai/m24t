@@ -7,12 +7,16 @@ import type { CountryData } from "../../types.js"
 // Act 2024, Royal Assent 10 Dec 2024) APP 7 (direct marketing). APP 7
 // "does not apply to the extent" the Spam Act applies (OAIC APP 7 ch. 7).
 // Functional unsubscribe (s. 18) and sender ID (s. 17) required in every
-// commercial electronic message. No B2B exemption — Spam Act covers all
-// commercial electronic messages; inferred consent only via Schedule 2
-// (e.g. conspicuously published business address). Children's Online
-// Privacy Code (mandated by 2024 Amendment) in exposure draft as of
-// 2026-05-03 — must be registered by 10 Dec 2026; not yet in force.
-// Sources verified 2026-05-03:
+// commercial electronic message. B2B: Schedule 2 clause 4 deems consent
+// for messages sent to a conspicuously published work-related electronic
+// address of an employee/director/officer/etc., provided the message
+// relates to that person's work role and the publication is not
+// accompanied by a "no unsolicited messages" statement (mapped to the
+// `publicly-disclosed` regime, per Spam Act 2003 Sch. 2 cl. 4).
+// Children's Online Privacy Code (mandated by 2024 Amendment) in
+// exposure draft as of 2026-09-01 — must be registered by 10 Dec 2026;
+// not yet in force. Sources verified 2026-09-01:
+//   https://www.legislation.gov.au/C2004A01214/latest (Spam Act 2003)
 //   https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-guidelines/chapter-7-app-7-direct-marketing
 //   https://www.oaic.gov.au/privacy/privacy-registers/privacy-codes/childrens-online-privacy-code
 //   https://www.legislation.gov.au/C2024A00128/asmade
@@ -31,7 +35,21 @@ export const AU: CountryData = {
     softOptInScope: "none",
     requiresCallerSimilarityAssertion: false,
     impliedConsentTtlMonths: null,
-    b2bExemption: { regime: "none", conditions: [] },
+    // b2bExemption: publicly-disclosed per https://www.legislation.gov.au/C2004A01214/latest
+    // (Spam Act 2003 Sch. 2 cl. 4 — inferred consent for conspicuously
+    // published work-related electronic addresses of employees, directors,
+    // officers, partners, office-holders and self-employed individuals,
+    // limited to messages relevant to that person's work role).
+    b2bExemption: {
+      regime: "publicly-disclosed",
+      conditions: [
+        "address must be conspicuously published (Spam Act 2003 Sch. 2 cl. 4(2)(b))",
+        "address must belong to an employee, director, officer, partner, office-holder or self-employed individual (Sch. 2 cl. 4(2)(a))",
+        "publication must not carry a 'no unsolicited messages' statement (Sch. 2 cl. 4(2)(d))",
+        "message must be relevant to the work-related business, functions or duties of the recipient (Sch. 2 cl. 4(2)(e)-(g))",
+        "sender identification (s. 17) and functional unsubscribe (s. 18) still apply",
+      ],
+    },
     consentLanguage: { required: [], mustMatchUserLocale: false },
     dataResidency: {
       storageRegion: "any",
@@ -62,7 +80,7 @@ export const AU: CountryData = {
       url: "https://www.acma.gov.au/avoid-sending-spam",
       jurisdiction: "AU",
       subRegime: null,
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: false,
       lawyerAttestation: null,
