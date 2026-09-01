@@ -62,10 +62,15 @@ export const EE: CountryData = {
     proofRequired: ["timestamp", "ip", "source", "wording", "ua"],
     basis: {
       statute: "Elektroonilise side seadus (ESS) §103¹ + Isikuandmete kaitse seadus (IKS) §8 + Regulation (EU) 2016/679 (GDPR)",
-      url: "https://www.riigiteataja.ee/akt/122052018003",
+      // Current in-force terviktekst of ESS (jõustunud 12.10.2025).
+      // Prior URL (akt/122052018003) could not be verified as ESS — replaced
+      // with the confirmed ESS terviktekst; RT permalink for the base act is
+      // https://www.riigiteataja.ee/akt/827848 (?leiaKehtiv= always
+      // redirects to the currently in-force version).
+      url: "https://www.riigiteataja.ee/akt/102102025015",
       jurisdiction: "EE",
       subRegime: "EE-ESS",
-      dataLastUpdated: "2026-05-03",
+      dataLastUpdated: "2026-09-01",
       confidence: "medium",
       extraterritorialReach: true,
       lawyerAttestation: null,
